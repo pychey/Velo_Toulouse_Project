@@ -1,6 +1,6 @@
 import 'package:latlong2/latlong.dart';
-import '../../../model/bike_slot/bike_slot.dart';
-import '../../../model/station/station.dart';
+import '../../../../model/bike_slot/bike_slot.dart';
+import '../../../../model/station/station.dart';
 import 'station_repository.dart';
 
 class StationRepositoryMock implements StationRepository {

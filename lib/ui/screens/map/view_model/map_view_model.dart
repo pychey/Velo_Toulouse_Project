@@ -114,6 +114,35 @@ class MapViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void submitSearch(String query) {
+    final trimmed = query.trim();
+    if (trimmed.isEmpty) {
+      closeSheet();
+      return;
+    }
+    _searchQuery = trimmed;
+    _isSearchMode = true;
+    _isSheetOpen = true;
+
+    final q = trimmed.toLowerCase();
+    _sheetStationsSnapshot = nearbyStations
+        .where((s) => s.name.toLowerCase().contains(q))
+        .toList();
+
+    final matches = _sheetStationsSnapshot!;
+    if (matches.isNotEmpty && matches.first.hasAvailableBikes) {
+      _selectedStationId = matches.first.id;
+    } else {
+      _selectedStationId = null;
+    }
+    notifyListeners();
+  }
+
+  void updateSearchQuery(String query) {
+    _searchQuery = query;
+    notifyListeners();
+  }
+
   void closeSheet() {
     _isSheetOpen = false;
     _selectedStationId = null;

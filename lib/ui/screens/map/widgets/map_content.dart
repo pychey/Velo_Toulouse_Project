@@ -53,11 +53,11 @@ class _MapContentState extends State<MapContent> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: SearchBarWidget(
                 initialValue: vm.searchQuery,
-                onSubmit: (value) {},
+                onSubmit: vm.submitSearch,
               ),
             ),
           ),
-          if (vm.isSheetOpen) StationsBottomSheet(vm: vm),
+          if (vm.isSheetOpen) Placeholder(),
         ],
       ),
     );

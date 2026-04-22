@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../theme/theme.dart';
 import '../view_model/confirmation_view_model.dart';
-
+import 'timer_card.dart';
 
 class ConfirmationContent extends StatelessWidget {
   const ConfirmationContent({super.key});
@@ -47,7 +47,7 @@ class ConfirmationContent extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 32),
-              if (!vm.timerFinished) const Placeholder(),
+              if (!vm.timerFinished) const TimerCard(),
               if (!vm.timerFinished) const SizedBox(height: 32),
               Align(
                 alignment: Alignment.centerLeft,
@@ -84,7 +84,7 @@ class ConfirmationContent extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () => Navigator.pop(context),
+                onTap: () {},
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),

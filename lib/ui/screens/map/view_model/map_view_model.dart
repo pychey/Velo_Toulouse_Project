@@ -83,6 +83,13 @@ class MapViewModel extends ChangeNotifier {
     return '${(meters / 1000).toStringAsFixed(1)} km';
   }
 
+  List<LatLng> get routePath {
+    final user = userLocation;
+    final station = selectedStation;
+    if (user == null || station == null) return [];
+    return [user, station.location];
+  }
+
   void selectStationFromMap(String stationId) {
     final station = stationState.getStationById(stationId);
     if (station == null) return;
@@ -104,35 +111,6 @@ class MapViewModel extends ChangeNotifier {
     if (!station.hasAvailableBikes) return;
 
     _selectedStationId = stationId;
-    notifyListeners();
-  }
-
-  void submitSearch(String query) {
-    final trimmed = query.trim();
-    if (trimmed.isEmpty) {
-      closeSheet();
-      return;
-    }
-    _searchQuery = trimmed;
-    _isSearchMode = true;
-    _isSheetOpen = true;
-
-    final q = trimmed.toLowerCase();
-    _sheetStationsSnapshot = nearbyStations
-        .where((s) => s.name.toLowerCase().contains(q))
-        .toList();
-
-    final matches = _sheetStationsSnapshot!;
-    if (matches.isNotEmpty && matches.first.hasAvailableBikes) {
-      _selectedStationId = matches.first.id;
-    } else {
-      _selectedStationId = null;
-    }
-    notifyListeners();
-  }
-
-  void updateSearchQuery(String query) {
-    _searchQuery = query;
     notifyListeners();
   }
 

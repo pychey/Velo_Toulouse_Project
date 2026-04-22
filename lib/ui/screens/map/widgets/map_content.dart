@@ -53,7 +53,7 @@ class _MapContentState extends State<MapContent> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: SearchBarWidget(
                 initialValue: vm.searchQuery,
-                onSubmit: vm.submitSearch,
+                onSubmit: (value) {},
               ),
             ),
           ),
@@ -109,6 +109,19 @@ class _MapContentState extends State<MapContent> {
           urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
           userAgentPackageName: 'com.velotoulouse.app',
         ),
+        if (vm.routePath.length == 2)
+          PolylineLayer(
+            polylines: [
+              Polyline(
+                points: vm.routePath,
+                strokeWidth: 5,
+                color: AppColors.brandPrimary,
+                borderStrokeWidth: 1,
+                borderColor: AppColors.brandDark,
+              ),
+            ],
+          ),
+        MarkerLayer(markers: markers),
       ],
     );
   }

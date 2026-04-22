@@ -50,6 +50,30 @@ class StationMarker extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Container(
+                constraints: const BoxConstraints(minWidth: 20, minHeight: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                decoration: BoxDecoration(
+                  color: badgeColor,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: AppColors.white, width: 1.5),
+                ),
+                child: Text(
+                  '${station.availableBikes}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontFamily: AppTextStyles.fontFamily,
+                    color: AppColors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    height: 1.2,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -57,7 +57,7 @@ class _MapContentState extends State<MapContent> {
               ),
             ),
           ),
-          if (vm.isSheetOpen) Placeholder(),
+          if (vm.isSheetOpen) StationsBottomSheet(vm: vm),
         ],
       ),
     );
